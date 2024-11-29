@@ -1,0 +1,9 @@
+.active{
+    color : green;
+    font-style: italic;
+}
+
+.inactive {
+    color: red;
+    font-style:oblique;
+}

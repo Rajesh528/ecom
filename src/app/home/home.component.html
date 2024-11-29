@@ -1,0 +1,11 @@
+
+<span [ngClass]="active == true ? 'active' : 'inactive'">hello</span>
+<span [ngStyle]="{color: active == true ? 'red' : 'green'}">hello</span>
+
+<div class="card" id="td">
+   Name: {{userName | name}}  
+   <p>US Dollars: {{ 1234.56 | currency:'USD' }}</p>
+<p>Indian Rupees: {{ 1234.56 | currency:'INR' }}</p>
+</div>
+
+<div *ngIf="role == 'admin'"></div>
