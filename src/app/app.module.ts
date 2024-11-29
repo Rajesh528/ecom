@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { NamePipe } from './name.pipe';
+import { HoverHighlightDirective } from './directives/hover-highlight.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NamePipe } from './name.pipe';
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    NamePipe
+    NamePipe,
+    HoverHighlightDirective
   ],
   imports: [
     BrowserModule,
