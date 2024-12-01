@@ -8,6 +8,9 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { NamePipe } from './name.pipe';
 import { HoverHighlightDirective } from './directives/hover-highlight.directive';
+import { ParentComponent } from './parent/parent.component';
+import { ChildComponent } from './child/child.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { HoverHighlightDirective } from './directives/hover-highlight.directive'
     SignupComponent,
     HomeComponent,
     NamePipe,
-    HoverHighlightDirective
+    HoverHighlightDirective,
+    ParentComponent,
+    ChildComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
