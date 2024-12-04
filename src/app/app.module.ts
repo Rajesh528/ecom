@@ -11,7 +11,12 @@ import { HoverHighlightDirective } from './directives/hover-highlight.directive'
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { FormsModule } from '@angular/forms';
+<<<<<<< Updated upstream
 import { HttpClientModule } from "@angular/common/http";
+=======
+import { PChildComponent } from './p-child/p-child.component';
+import { PParentComponent } from './p-parent/p-parent.component';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -22,7 +27,9 @@ import { HttpClientModule } from "@angular/common/http";
     NamePipe,
     HoverHighlightDirective,
     ParentComponent,
-    ChildComponent
+    ChildComponent,
+    PChildComponent,
+    PParentComponent
   ],
   imports: [
     BrowserModule,
