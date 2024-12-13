@@ -4,7 +4,7 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: UserHomeComponent} // Default route for this module
+  { path: 'userHome', component: UserHomeComponent} // Default route for this module
 ];
 
 @NgModule({

@@ -28,6 +28,7 @@ export class PChildComponent implements OnInit,OnChanges{
   }
   submit(){
 console.log(this.firstName)  
+console.log(this.user)
   }
 
 
