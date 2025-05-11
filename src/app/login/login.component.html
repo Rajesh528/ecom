@@ -1,6 +1,41 @@
+<div class="container mt-5" style="max-width: 400px;">
+  <h3 class="mb-4">Login</h3>
 
-<div class="card">
-    <ng-content></ng-content>
-  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input
+  formControlName="username"
+  class="form-control"
+  [ngClass]="{ 'is-invalid': submitted && loginForm.controls['username'].invalid }"
+/>
 
-  
+      <div *ngIf="submitted && loginForm.controls['username'].invalid" class="invalid-feedback">
+        Username is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && loginForm.controls['password'].invalid }"
+      />
+      <div *ngIf="submitted && loginForm.controls['password'].invalid" class="invalid-feedback">
+        Password is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100" [disabled]="loading$ | async">
+      <span *ngIf="loading$ | async; else loginText">Logging in...</span>
+      <ng-template #loginText>Login</ng-template>
+    </button>
+
+    <div *ngIf="authError$ | async as error" class="alert alert-danger mt-3">
+      {{ error }}
+    </div>
+  </form>
+</div>
