@@ -1,39 +1,41 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { signup } from '../store/actions/auth.actions';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-signup',
-  //   templateUrl: './login.component.html',
-  template: `
-    <div class="signup-container">
-      <h2>Signup</h2>
-      <input [(ngModel)]="username" placeholder="Username" />
-      <input [(ngModel)]="email" placeholder="Email" />
-      <input [(ngModel)]="mobile" placeholder="Mobile" />
-      <input [(ngModel)]="password" placeholder="Password" type="password" />
-      <button (click)="onSignup()">Signup</button>
-    </div>
-  `,
-  styleUrls: ['./signup.component.css'],
-
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  username = '';
-  email = '';
-  mobile = '';
-  password = '';
+  signupForm: FormGroup;
+  submitted = false;
 
-  constructor(private store: Store, private router : Router) {}
+  constructor(private fb: FormBuilder, private store: Store, private router:Router) {
+    this.signupForm = this.fb.group({
+      username: ['', Validators.required],
+      mobile: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    });
+  }
 
-  onSignup() {
-    this.store.dispatch(signup({
-      username: this.username,
-      email: this.email,
-      mobile: this.mobile,
-      password: this.password
-    }));
-     this.router.navigate(['/login']);
+  get passwordMismatch(): boolean {
+    const { password, confirmPassword } = this.signupForm.value;
+    return password !== confirmPassword;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.signupForm.invalid || this.passwordMismatch) return;
+
+    const { username, email, mobile, password } = this.signupForm.value;
+    this.store.dispatch(signup( { username, email, mobile, password }));
+    this.router.navigate(['/login'])
+
   }
 }

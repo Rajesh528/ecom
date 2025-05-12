@@ -1,0 +1,88 @@
+<div class="container-fluid p-0">
+  <div class="row g-0 vh-100">
+
+    <!-- Left Side - Empty Space (40%) -->
+    <div class="col-md-5 d-none d-md-block bg-light"></div>
+
+    <!-- Right Side - Sign Up Form (60%) -->
+    <div class="col-md-7 d-flex align-items-center justify-content-center bg-white px-5">
+      <div class="w-100" style="max-width: 450px;">
+        <h2 class="mb-4 text-center">Create Account</h2>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="username"
+              [ngClass]="{ 'is-invalid': submitted && signupForm.controls['username'].invalid }"
+            />
+            <div class="invalid-feedback" *ngIf="submitted && signupForm.controls['username'].invalid">
+              Username is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Mobile</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="mobile"
+              [ngClass]="{ 'is-invalid': submitted && signupForm.controls['mobile'].invalid }"
+            />
+            <div class="invalid-feedback" *ngIf="submitted && signupForm.controls['mobile'].invalid">
+              Mobile number is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              [ngClass]="{ 'is-invalid': submitted && signupForm.controls['email'].invalid }"
+            />
+            <div class="invalid-feedback" *ngIf="submitted && signupForm.controls['email'].invalid">
+              Valid email is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && signupForm.controls['password'].invalid }"
+            />
+            <div class="invalid-feedback" *ngIf="submitted && signupForm.controls['password'].invalid">
+              Password is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Confirm Password</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="confirmPassword"
+              [ngClass]="{ 'is-invalid': submitted && passwordMismatch }"
+            />
+            <div class="invalid-feedback" *ngIf="submitted && passwordMismatch">
+              Passwords do not match.
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success w-100">Sign Up</button>
+
+          <div class="text-center mt-3">
+            Already have an account? <a routerLink="/login">Log in</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
