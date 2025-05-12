@@ -1,46 +1,67 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  userD:any[]=[];
-  users:any[]=[];
-data: any;
-
-constructor(public dataSrvc:DataService ,public router:Router ) {}
-
-ngOnInit(): void {
-  console.log("calling home")
-  this.dataSrvc.getUsers().subscribe((data:any)=>{
-    console.log(data);
-   this.userD=data.data
-   console.log(this.userD)    
-  });
-  // this.dataSrvc.getUserDetails(1).subscribe((data:any)=>{
-  //   console.log(data);
-  // });
-}
-  active : boolean = false;
-  userName:string="rajesh kumar";
- role:string = "admin";
- dataArry :any = []
-info:any;
-
-
- getData(data:any){
-console.log(data.id);
-this.dataSrvc.getUserDetails(data.id).subscribe((response:any)=>{
-  console.log(response);
-  this.dataSrvc.setData(response)
-  this.router.navigate(['details'])
- 
-});
-
- }
-
+export class HomeComponent {
+  products: Product[] = [
+    {
+      id: 1,
+      name: 'Smartphone',
+      description: 'Latest Android smartphone with high-end specs.',
+      price: 699,
+      imageUrl: 'https://source.unsplash.com/featured/?smartphone',
+    },
+    {
+      id: 2,
+      name: 'Laptop',
+      description: 'Powerful laptop for productivity and gaming.',
+      price: 1199,
+      imageUrl: 'https://source.unsplash.com/featured/?laptop',
+    },
+    {
+      id: 3,
+      name: 'Headphones',
+      description: 'Noise-cancelling over-ear headphones.',
+      price: 199,
+      imageUrl: 'https://source.unsplash.com/featured/?headphones',
+    },
+    {
+      id: 4,
+      name: 'Watch',
+      description: 'Smartwatch with health and fitness tracking.',
+      price: 149,
+      imageUrl: 'https://source.unsplash.com/featured/?watch',
+    },
+     {
+      id: 1,
+      name: 'Smartphone',
+      description: 'Latest Android smartphone with high-end specs.',
+      price: 699,
+      imageUrl: 'https://source.unsplash.com/featured/?smartphone',
+    },
+    {
+      id: 2,
+      name: 'Laptop',
+      description: 'Powerful laptop for productivity and gaming.',
+      price: 1199,
+      imageUrl: 'https://source.unsplash.com/featured/?laptop',
+    },
+    {
+      id: 3,
+      name: 'Headphones',
+      description: 'Noise-cancelling over-ear headphones.',
+      price: 199,
+      imageUrl: 'https://source.unsplash.com/featured/?headphones',
+    },
+    {
+      id: 4,
+      name: 'Watch',
+      description: 'Smartwatch with health and fitness tracking.',
+      price: 149,
+      imageUrl: 'https://source.unsplash.com/featured/?watch',
+    }
+  ];
 }
