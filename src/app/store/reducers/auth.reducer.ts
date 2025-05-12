@@ -34,5 +34,6 @@ export const authReducer = createReducer(
   on(loginFailure, (state, { error }) => ({
     ...state,
     error,
+        isAuthenticated: false,
   }))
 );

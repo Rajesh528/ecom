@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { signup } from '../store/actions/auth.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -14,35 +15,8 @@ import { signup } from '../store/actions/auth.actions';
       <button (click)="onSignup()">Signup</button>
     </div>
   `,
-  styles: [`
-    .signup-container {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f4f4f9;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    input {
-      width: 100%;
-      margin-bottom: 15px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-  `]
+  styleUrls: ['./signup.component.css'],
+
 })
 export class SignupComponent {
   username = '';
@@ -50,7 +24,7 @@ export class SignupComponent {
   mobile = '';
   password = '';
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router : Router) {}
 
   onSignup() {
     this.store.dispatch(signup({
@@ -59,5 +33,6 @@ export class SignupComponent {
       mobile: this.mobile,
       password: this.password
     }));
+     this.router.navigate(['/login']);
   }
 }

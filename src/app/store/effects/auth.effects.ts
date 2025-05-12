@@ -13,7 +13,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(signup),
       switchMap(({ username, email, mobile, password }) => {
-        const user = { username, email, mobile };
+        const user = { username, email, mobile,password };
         // Simulate saving user to localStorage
         localStorage.setItem('user', JSON.stringify(user));
         return of(signupSuccess({ user }));
