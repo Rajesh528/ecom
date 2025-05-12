@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import { signup, signupSuccess, login, loginSuccess, loginFailure } from '../actions/auth.actions';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(private actions$: Actions, private authService: AuthService, private router:Router) {}
 
   signup$ = createEffect(() =>
     this.actions$.pipe(
@@ -38,17 +39,12 @@ export class AuthEffects {
       catchError((error) => of(loginFailure({ error: 'Login failed' })))
     )
   );
+  loginSuccess$ = createEffect(
+  () =>
+    this.actions$.pipe(
+      ofType(loginSuccess),
+      tap(() => this.router.navigate(['/home']))
+    ),
+  { dispatch: false }
+);
 }
-
-
-//  signup$ = createEffect(() =>
-//     this.actions$.pipe(
-//       ofType(signup),
-//       switchMap(({ username, email, mobile, password }) => {
-//         return this.authService.signup(username, email, mobile, password).pipe(
-//           map((user) => signupSuccess({ user })),
-//           catchError((error) => of(signupFailure({ error: 'Signup failed' })))
-//         );
-//       })
-//     )
-//   );

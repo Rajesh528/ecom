@@ -24,10 +24,7 @@ export class LoginComponent {
   onSubmit() {
     this.submitted = true;
     if (this.loginForm.invalid) return;
-
     const { email, password } = this.loginForm.value;
-    this.store.dispatch(login({ emailOrMobile: email, password }));
-    this.router.navigate(['./home']);
-    
+    this.store.dispatch(login({ emailOrMobile: email, password }))    
   }
 }
