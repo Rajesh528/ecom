@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
+  //   templateUrl: './login.component.html',
   template: `
     <div class="signup-container">
       <h2>Signup</h2>

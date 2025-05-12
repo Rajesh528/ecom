@@ -1,81 +1,29 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { login } from '../store/actions/auth.actions'                        //'../store/auth/auth.actions';
-import { AppState } from '../store';
+import { login } from '../store/actions/auth.actions';  
 
 @Component({
   selector: 'app-login',
-  template: `
-    <div>
-      <h2>Login</h2>
-      <input [(ngModel)]="emailOrMobile" placeholder="Email or Mobile" />
-      <input [(ngModel)]="password" placeholder="Password" type="password" />
-      <button (click)="onLogin()">Login</button>
-    </div>
-  `,
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  emailOrMobile = '';
-  password = '';
+  loginForm: FormGroup;
+  submitted = false;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private fb: FormBuilder, private store: Store) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
 
-  onLogin() {
-    this.store.dispatch(login({ emailOrMobile: this.emailOrMobile, password: this.password }));
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginForm.invalid) return;
+
+    const { email, password } = this.loginForm.value;
+    this.store.dispatch(login({ emailOrMobile: email, password }));
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { Component } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { Store } from '@ngrx/store';
-// import * as AuthActions from '../store/actions/auth.actions';
-// import { Observable } from 'rxjs';
-// import { AuthState } from '..//store/reducers/auth.reducer';
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.component.html'
-// })
-// export class LoginComponent {
-//   loginForm: FormGroup;
-//   submitted = false;
-//     authError$: Observable<string | null>;
-//   loading$: Observable<boolean>;
-
-//   constructor(private fb: FormBuilder, private store: Store<{ auth: AuthState }> ) {
-  
-//     this.loginForm = this.fb.group({
-//       username: ['', Validators.required],
-//       password: ['', Validators.required]
-//     });
-
-//     this.authError$ = this.store.select(state => state.auth.error);
-//     this.loading$ = this.store.select(state => state.auth.loading);
-//   }
-
-//   onSubmit(): void {
-//     this.submitted = true;
-//     if (this.loginForm.valid) {
-//       this.store.dispatch(AuthActions.login({ 
-//         credentials: this.loginForm.value 
-//       }));
-//     }
-//   }
-// }
