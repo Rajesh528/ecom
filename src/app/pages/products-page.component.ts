@@ -19,6 +19,6 @@ export class ProductsPageComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(ProductActions.loadProducts());
     this.products$ = this.store.select(ProductSelectors.selectAllProducts);
-    this.loading$ = this.store.select(ProductSelectors.selectLoading);
+    this.loading$ = this.store.select(ProductSelectors.selectProductsLoading);
   }
 }

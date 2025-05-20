@@ -1,10 +1,11 @@
+
+<div *ngIf="authError$ | async as error" class="alert alert-danger mt-2">
+  {{ error }}
+</div>
 <div class="container-fluid p-0">
   <div class="row g-0 vh-100">
 
-    <!-- Left Side - Empty Space (40%) -->
     <div class="col-md-5 d-none d-md-block bg-light"></div>
-
-    <!-- Right Side - Sign Up Form (60%) -->
     <div class="col-md-7 d-flex align-items-center justify-content-center bg-white px-5">
       <div class="w-100" style="max-width: 450px;">
         <h2 class="mb-4 text-center">Create Account</h2>

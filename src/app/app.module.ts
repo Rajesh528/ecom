@@ -19,6 +19,7 @@ import { ProductsPageComponent } from './pages/products-page.component';
 import { AuthEffects } from './store/effects/auth.effects';
 import { authReducer } from './store/reducers/auth.reducer';
 import { SignupComponent } from './signup/signup.component';
+import { HeaderComponent } from './componets/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { SignupComponent } from './signup/signup.component';
     HomeComponent,
     NamePipe,
     ProductsPageComponent,
-    SignupComponent
+    SignupComponent,
+    HeaderComponent
 
   ],
   imports: [

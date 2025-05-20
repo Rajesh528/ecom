@@ -19,6 +19,7 @@ export const login = createAction(
   '[Auth] Login',
   props<{ emailOrMobile: string; password: string }>()
 );
+export const logout = createAction('[Auth] Logout');
 
 export const loginSuccess = createAction(
   '[Auth] Login Success',

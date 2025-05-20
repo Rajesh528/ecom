@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class SignupComponent {
   signupForm: FormGroup;
   submitted = false;
-
+ authError$ = this.store.select((state:any) => state.auth.error);
   constructor(private fb: FormBuilder, private store: Store, private router:Router) {
     this.signupForm = this.fb.group({
       username: ['', Validators.required],
@@ -35,7 +35,7 @@ export class SignupComponent {
 
     const { username, email, mobile, password } = this.signupForm.value;
     this.store.dispatch(signup( { username, email, mobile, password }));
-    this.router.navigate(['/login'])
+    
 
   }
 }
