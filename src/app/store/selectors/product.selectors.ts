@@ -21,12 +21,12 @@ export const selectProductById = (id: number) => createSelector(
 );
 
 // 3. UI state selectors
-export const selectLoading = createSelector(
+export const selectProductsLoading = createSelector(
   selectProductState,
-  state => state.loading
+  (state) => state.loading
 );
 
-export const selectError = createSelector(
+export const selectProductsError = createSelector(
   selectProductState,
-  state => state.error
+  (state) => state.error
 );
